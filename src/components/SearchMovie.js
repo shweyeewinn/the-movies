@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { Form, FormControl } from 'react-bootstrap';
+
+import { createBrowserHistory } from 'history';
+const history = createBrowserHistory();
 
 class SearchMovie extends Component {
   // eslint-disable-next-line
@@ -18,23 +22,22 @@ class SearchMovie extends Component {
 
   onFormSubmit = e => {
     e.preventDefault();
+    // history.push(`/movies/search`);
     this.props.onSearchTermChange(this.state.term);
   };
 
   render() {
-    // console.log(this.props);
     return (
       <div>
-        <form onSubmit={this.onFormSubmit}>
-          <div>
-            <label>Video Search</label>
-            <input
-              type="text"
-              value={this.state.term}
-              onChange={this.onInputChange}
-            />
-          </div>
-        </form>
+        <Form inline onSubmit={this.onFormSubmit}>
+          <FormControl
+            type="text"
+            placeholder="Search Movies"
+            className="mr-sm-2"
+            value={this.state.term}
+            onChange={this.onInputChange}
+          />
+        </Form>
       </div>
     );
   }

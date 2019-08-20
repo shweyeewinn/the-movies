@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
+import { Container, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import { searchMovie } from '../store/actions';
 
 import SearchMovie from '../components/SearchMovie';
 import MovieList from '../components/MovieList';
+import Header from '../components/Header';
 
 const propTypes = {
   onSearchMovie: PropTypes.func.isRequired
@@ -18,18 +19,22 @@ class Home extends Component {
     const { movieResult, onSearchMovie } = this.props;
 
     return (
-      <div>
-        <div>
-          <h1>
-            <Link to="/">Home</Link>
-          </h1>
-        </div>
-
-        <div>
-          <SearchMovie onSearchTermChange={onSearchMovie} />
-          <MovieList movieResult={movieResult} />
-        </div>
-      </div>
+      <>
+        <Container fluid className="p-0" bg="dark" variant="dark">
+          <Row>
+            <Col>
+              <Header onSearchTermChange={onSearchMovie} />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Container>
+                <MovieList movieResult={movieResult} />
+              </Container>
+            </Col>
+          </Row>
+        </Container>
+      </>
     );
   }
 }
