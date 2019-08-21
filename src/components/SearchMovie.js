@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import { Form, FormControl } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Form, FormControl, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { searchMovie } from '../store/actions';
 
-import { createBrowserHistory } from 'history';
-const history = createBrowserHistory();
+const propTypes = {
+  onSearchMovie: PropTypes.func.isRequired
+};
 
 class SearchMovie extends Component {
   // eslint-disable-next-line
   constructor(props) {
     super(props);
-
+    console.log('Props', props);
     this.state = {
       term: 'avengers'
     };
@@ -22,25 +26,39 @@ class SearchMovie extends Component {
 
   onFormSubmit = e => {
     e.preventDefault();
-    // history.push(`/movies/search`);
-    this.props.onSearchTermChange(this.state.term);
+    this.props.onSearchMovie(this.state.term);
+    this.props.history.push(`/movies/search`);
   };
 
   render() {
     return (
-      <div>
+      <>
         <Form inline onSubmit={this.onFormSubmit}>
           <FormControl
             type="text"
             placeholder="Search Movies"
-            className="mr-sm-2"
+            className=" mr-sm-2"
             value={this.state.term}
             onChange={this.onInputChange}
           />
+          <Button type="submit" onClick={this.onFormSubmit}>
+            Submit
+          </Button>
         </Form>
-      </div>
+      </>
     );
   }
 }
 
-export default SearchMovie;
+SearchMovie.propTypes = propTypes;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSearchMovie: term => dispatch(searchMovie(term))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchMovie);

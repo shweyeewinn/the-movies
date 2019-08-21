@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMovieDetail } from '../store/actions';
 import PropTypes from 'prop-types';
+import Layout from '../components/Layout';
 
 const propTypes = {
   ongetMovieDetail: PropTypes.func.isRequired
@@ -17,11 +18,11 @@ class MovieDetail extends Component {
     const { movieDetail } = this.props;
 
     return (
-      <div>
+      <Layout>
         <h1>{movieDetail.title}</h1>
         <p>{movieDetail.tagline}</p>
         <div>{movieDetail.overview}</div>
-      </div>
+      </Layout>
     );
   }
 }

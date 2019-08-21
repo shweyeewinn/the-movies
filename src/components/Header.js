@@ -1,9 +1,7 @@
 import React from 'react';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
-import SearchMovie from '../components/SearchMovie';
-
-const Header = ({ onSearchTermChange }) => {
+const Header = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -11,7 +9,6 @@ const Header = ({ onSearchTermChange }) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
-            <SearchMovie onSearchTermChange={onSearchTermChange} />
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="#features">Movies</Nav.Link>
             <Nav.Link href="#pricing">TV Series</Nav.Link>

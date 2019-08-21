@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Image } from 'react-bootstrap';
 import { CardColumns, Card } from 'react-bootstrap';
 
 const renderGenreList = genres => {
